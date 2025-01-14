@@ -64,18 +64,10 @@ pub async fn add_link(
     if result.success {
         let out = utils::add_link(req, &data.db);
         if out.0 {
-            let port = env::var("port")
-                .unwrap_or(String::from("4567"))
-                .parse::<u16>()
-                .expect("Supplied port is not an integer");
-            let url = format!(
-                "{}:{}",
-                env::var("site_url")
-                    .ok()
-                    .filter(|s| !s.trim().is_empty())
-                    .unwrap_or(String::from("http://localhost")),
-                port
-            );
+            let url = env::var("site_url")
+                .ok()
+                .filter(|s| !s.trim().is_empty())
+                .unwrap_or(String::from("http://localhost"));
             let response = CreatedURL {
                 success: true,
                 error: false,

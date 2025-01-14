@@ -129,7 +129,7 @@ const copyShortUrl = async (link) => {
     const site = await getSiteUrl();
     try {
         navigator.clipboard.writeText(`${site}/${link}`);
-        showAlert(`Short URL ${link} was copied to clipboard!`, "green");
+        showAlert(`Short URL ${site}/${link} was copied to clipboard!`, "green");
     } catch (e) {
         console.log(e);
         showAlert(`Could not copy short URL to clipboard, please do it manually: <a href=${site}/${link}>${site}/${link}</a>`, "red");
